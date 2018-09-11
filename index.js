@@ -10,13 +10,14 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function renderResult(result) {
-  return `
-    <div>
-      <h2>
-        <button class="playVideo" type="button"><img src="${result.snippet.thumbnails.medium.url}"></button>
-      </h2>
+  const result = (
+    `<div>
+      <button class="playVideo" type="button"><a href="https://www.youtube.com/watch?v=" + "${result.id}"><img src="${result.snippet.thumbnails.medium.url}"></a></button>
     </div>
-  `;
+  `);
+  result
+    .prop('hidden', false)
+    .html(result);
 }
 
 function displayYouTubeSearchData(data) {
@@ -36,20 +37,3 @@ function watchSubmit() {
 }
 
 $(watchSubmit);
-
-function playVideo(){
-  $('.playVideo').click(function(event) {
-    console.log("clicked");
-    generateVideo();
-  }); 
-}
-
-function generateVideo() {
-  return `
-      <div>
-        <a href="https://www.youtube.com/watch?v=E5yFcdPAGv0">
-      </div>
-    `;
-}
-
-
